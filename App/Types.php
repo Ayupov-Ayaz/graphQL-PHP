@@ -1,8 +1,8 @@
 <?php
 namespace App;
 
+use App\Type\QueryType;
 use GraphQL\Type\Definition\Type;
-use QueryType;
 
 class Types
 {
