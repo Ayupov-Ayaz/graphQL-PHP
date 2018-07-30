@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
+use App\Types;
 use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
 
 try {
@@ -17,9 +17,9 @@ try {
     'name' => 'Query',
     'fields' => [
         'echo' => [
-            'type' => Type::string(),
+            'type' => Types::string(),
             'args' => [
-                'message' => Type::nonNull(Type::string()),
+                'message' => Types::string(),
             ],
             'resolve' => function ($root, $args) {
                 return $root['prefix'] . $args['message'];
