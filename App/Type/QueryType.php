@@ -9,13 +9,19 @@ class QueryType extends ObjectType
     public function __construct(array $config)
     {
         $config = [
+            'name' => $config['name'],
             'fields' => function() {
                     return [
-                        'hello' => Types::string(),
+                    'echo' => [
+                        'type' => Types::string(),
                         'description' => 'Возвращает приветствие',
-                        'resolve' => function() {
-                            return 'Hello all!';
+                        'args' => [
+                            'message' => Types::string(),
+                        ],
+                        'resolve' => function ($root, $args) {
+                            return $root['prefix'] . $args['message'];
                         }
+                        ]
                     ];
             }
         ];
