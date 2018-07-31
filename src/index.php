@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
 
+use App\DB;
 use App\Types;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
@@ -25,6 +26,9 @@ try {
             require $fileName;
         }
     );
+    $configs = require_once(__DIR__.'/App/configs/web.php');
+    $db = new DB();
+    $db->init($configs['db']);
 
     // получаем json запрос
     $rawInput = file_get_contents('php://input');
