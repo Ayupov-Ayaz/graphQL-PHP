@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - ./src/:/var/www/html/
+    ports:
+      - ${APP_PORT}:80
+    restart: always
+    container_name: graphql_app
+    links:
+      - mysql:mysql_link
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - ${MYSQL_PORT}:3306
+    container_name: graphql_mysql
+    restart: always
+    env_file:
+      - .env
