@@ -9,7 +9,6 @@ class QueryType extends ObjectType
     public function __construct(array $config)
     {
         $config = [
-            'name' => $config['name'],
             'fields' => function() {
                     return [
                     'echo' => [
