@@ -4,6 +4,11 @@ namespace App;
 use App\Type\QueryType;
 use GraphQL\Type\Definition\Type;
 
+/**
+ * Реестр типов
+ * Class Types
+ * @package App
+ */
 class Types
 {
     // составной тип данных
