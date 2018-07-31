@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
+
 use App\Types;
 use GraphQL\GraphQL;
-use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Schema;
 
 try {
@@ -26,27 +26,15 @@ try {
         }
     );
 
-
+    // получаем json запрос
     $rawInput = file_get_contents('php://input');
     $input = json_decode($rawInput, true);
     $query = $input['query'];
+
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
     $rootValue = ['prefix' => 'You said: '];
 
-    $queryType = new ObjectType([
-    'name' => 'Query',
-    'fields' => [
-        'echo' => [
-            'type' => Types::string(),
-            'args' => [
-                'message' => Types::string(),
-            ],
-            'resolve' => function ($root, $args) {
-                return $root['prefix'] . $args['message'];
-            }
-        ],
-    ],
-    ]);
+    $queryType = Types::query(['name' => 'Query']);
 
     $schema = new Schema([
         'query' => $queryType
