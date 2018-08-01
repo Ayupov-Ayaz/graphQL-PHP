@@ -21,6 +21,7 @@ class DB
             self::$pdo = new PDO("mysql:host={$config['host']};dbname={$config['database']}",
                                       $config['username'], $config['password']);
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+            self::$pdo->query('SET NAMES utf8');
         }  catch (PDOException $e) {
             json_encode(['error' => $e->getMessage()]);
         }
