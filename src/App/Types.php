@@ -25,17 +25,14 @@ class Types
         return Type::string();
     }
 
-    public static function int()
-    {
+    public static function int() {
         return Type::int();
     }
     // массив типа
-    public static function listOf($type)
-    {
+    public static function listOf($type) {
         return Type::listOf($type);
     }
-    public static function user()
-    {
+    public static function user() {
         return self::$user ?: (self::$user = new UserType());
     }
 }

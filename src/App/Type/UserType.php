@@ -5,8 +5,7 @@ use App\Types;
 use GraphQL\Type\Definition\ObjectType;
 class UserType extends ObjectType
 {
-    public function __construct()
-    {
+    public function __construct() {
         $config = [
             'description' => 'Пользователь',
             'fields' => function() {

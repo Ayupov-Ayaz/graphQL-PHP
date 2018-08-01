@@ -5,8 +5,7 @@ use GraphQL\Type\Definition\ObjectType;
 use App\Types;
 class QueryType extends ObjectType
 {
-    public function __construct()
-    {
+    public function __construct() {
         $config = [
             'fields' => function() {
                 // все возможные комбинации запросов:
