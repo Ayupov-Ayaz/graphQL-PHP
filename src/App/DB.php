@@ -7,8 +7,6 @@
  */
 
 namespace App;
-
-
 use PDO;
 use PDOException;
 
@@ -37,5 +35,23 @@ class DB
     public static function affectingStatement($query) {
         $statement = self::$pdo->query($query);
         return $statement->rowCount();
+    }
+    public static function insert($table, $params) {
+        $statement = self::$pdo->query($query);
+        $success = $statement->execute();
+        return $success ? self::$pdo->lastInsertId() : null;
+    }
+    public static function update($table_name, array $params, $where, $limit) {
+
+        $statement = self::$pdo->query("UPDATE {$table_name} SET ".implode($valstr, ' ,')." where {$where}");
+        $statement->execute();
+    }
+    private static function prepareParams(array $params) {
+        foreach ($params as $key => $val)
+        {
+            $val = gettype($val) == 'string' ? "'".$val."'" : $val;
+            $valstr[] = $key." = ".$val;
+        }
+        return $valstr;
     }
 }

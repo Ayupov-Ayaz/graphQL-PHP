@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Type\MutationType;
 use App\Type\QueryType;
 use App\Type\UserType;
 use GraphQL\Type\Definition\Type;
@@ -17,6 +18,8 @@ class Types
 
     private static $user;
 
+    private static $mutation;
+
     public static function query(array $config) {
         return self::$query ?: (self::$query = new QueryType($config));
     }
@@ -25,17 +28,17 @@ class Types
         return Type::string();
     }
 
-    public static function int()
-    {
+    public static function int() {
         return Type::int();
     }
     // массив типа
-    public static function listOf($type)
-    {
+    public static function listOf($type) {
         return Type::listOf($type);
     }
-    public static function user()
-    {
+    public static function user() {
         return self::$user ?: (self::$user = new UserType());
+    }
+    public static function mutation() {
+        return self::$mutation ?: (self::$mutation = new MutationType());
     }
 }

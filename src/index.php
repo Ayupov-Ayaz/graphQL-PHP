@@ -39,9 +39,10 @@ try {
     $rootValue = ['prefix' => 'You said: '];
 
     $queryType = Types::query(['name' => 'Query']);
-
+    $mutationType = Types::mutation();
     $schema = new Schema([
-        'query' => $queryType
+        'query' => $queryType,
+        'mutation' => $mutationType
     ]);
 
     $result = GraphQL::executeQuery($schema, $query, $rootValue, null, $variableValues);
