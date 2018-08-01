@@ -38,10 +38,8 @@ try {
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
     $rootValue = ['prefix' => 'You said: '];
 
-    $queryType = Types::query(['name' => 'Query']);
-
     $schema = new Schema([
-        'query' => $queryType
+        'query' => Types::query()
     ]);
 
     $result = GraphQL::executeQuery($schema, $query, $rootValue, null, $variableValues);
