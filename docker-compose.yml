@@ -23,5 +23,12 @@ services:
       - .env
     volumes:
       - db-data:/var/lib/mysql
+
+  composer:
+    image: composer/composer
+    volumes:
+      - ./src/:/app
+    working_dir: /app
+    
 volumes:
   db-data:
