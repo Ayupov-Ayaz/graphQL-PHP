@@ -28,7 +28,8 @@ class DB
     }
     public static function selectOne($query) {
         $records = self::select($query);
-        return array_shift($records);
+        $result =  array_shift($records);
+        return $result;
     }
     public static function select($query) {
         $statement = self::$pdo->query($query);
@@ -37,5 +38,15 @@ class DB
     public static function affectingStatement($query) {
         $statement = self::$pdo->query($query);
         return $statement->rowCount();
+    }
+    public static function update($table_name, array $params, $where) {
+        if(!is_array($params)) return;
+        foreach ($params as $key => $val)
+        {
+            $val = gettype($val) == 'string' ? "'".$val."'" : $val;
+            $valstr[] = $key." = ".$val;
+        }
+        $statement = self::$pdo->query("UPDATE {$table_name} SET ".implode($valstr, ' ,')." where {$where}");
+        $statement->execute();
     }
 }
