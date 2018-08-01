@@ -17,8 +17,8 @@ class Types
 
     private static $user;
 
-    public static function query(array $config) {
-        return self::$query ?: (self::$query = new QueryType($config));
+    public static function query() {
+        return self::$query ?: (self::$query = new QueryType());
     }
 
     public static function string() {
