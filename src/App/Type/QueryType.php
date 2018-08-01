@@ -29,7 +29,7 @@ class QueryType extends ObjectType
                         ],
                         'resolve' => function($root, $args) {
                             $id = (int)$args['id'];
-                            return DB::selecOne("SELECT * FROM users WHERE id = ".$id);
+                            return DB::selectOne("SELECT * FROM users WHERE id = ".$id);
                         }
                     ],
                     'allUser' => [

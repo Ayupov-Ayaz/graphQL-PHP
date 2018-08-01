@@ -12,7 +12,7 @@ class UserType extends ObjectType
             'fields' => function() {
                 return [
                     'id' => [
-                        'type' => Types::string(),
+                        'type' => Types::int(),
                         'description' => 'Идентификатор пользователя'
                     ],
                     'name' => [
