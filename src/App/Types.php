@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Type\Input\InputUserType;
 use App\Type\MutationType;
 use App\Type\QueryType;
 use App\Type\UserType;
@@ -20,6 +21,7 @@ class Types
 
     private static $mutation;
 
+    private static $inputUser;
     public static function query() {
         return self::$query ?: (self::$query = new QueryType());
     }
@@ -40,5 +42,8 @@ class Types
     }
     public static function mutation() {
         return self::$mutation ?: (self::$mutation = new MutationType());
+    }
+    public static function inputUser() {
+        return self::$inputUser ?: (self::$inputUser = new InputUserType());
     }
 }
