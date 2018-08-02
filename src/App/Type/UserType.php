@@ -1,11 +1,16 @@
 <?php
 namespace App\Type;
-use App\DB;
+use App\Models\User;
 use App\Types;
 use GraphQL\Type\Definition\ObjectType;
 class UserType extends ObjectType
 {
+    private static $userModel = null;
+
     public function __construct() {
+        if(is_null(self::$userModel)) {
+            self::$userModel = new User();
+        }
         $config = [
             'description' => 'Пользователь',
             'fields' => function() {
@@ -27,10 +32,7 @@ class UserType extends ObjectType
                         'description' => 'Друзья пользователя',
                         'resolve' => function ($args) {
                             $id = (int)$args->id;
-                            return DB::select("SELECT u.* 
-                                                     FROM friendships f 
-                                                     JOIN users u ON u.id = f.friend_id 
-                                                     WHERE f.user_id = ".$id);
+                            self::$userModel->getFriends($id);
                         }
                     ],
                     'countFriends' => [
@@ -38,10 +40,7 @@ class UserType extends ObjectType
                         'description' => 'Количество друзей пользователя',
                         'resolve' => function ($args) {
                             $id = (int)$args->id;
-                            return DB::affectingStatement("SELECT u.* 
-                                                                 FROM friendships f 
-                                                                 JOIN users u ON u.id = f.friend_id 
-                                                                 WHERE f.user_id = ".$id);
+                            self::$userModel->getCountFriends($id);
                         }
                     ]
                 ];
