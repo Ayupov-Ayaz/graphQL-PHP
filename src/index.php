@@ -27,8 +27,7 @@ try {
         }
     );
     $configs = require_once(__DIR__.'/App/configs/web.php');
-    $db = new DB();
-    $db->init($configs['db']);
+    DB::init($configs['db']);
 
     // получаем json запрос
     $rawInput = file_get_contents('php://input');
