@@ -40,6 +40,19 @@ class MutationType extends ObjectType
                             DB::update('users', ['email' => $email], "id={$id}");
                             return DB::selectOne("SELECT * FROM users WHERE id = {$id}");
                         }
+                    ],
+                    'addUser' => [
+                        'type' => Types::user(),
+                        'description' => 'Добавление пользователя',
+                        'args' => [
+                            'user' => Types::inputUser()
+                        ],
+                        'resolve' => function($root, $args) {
+                            $userName = trim(htmlspecialchars($args['user']['name']));
+                            $userEmail = trim(htmlspecialchars($args['user']['email']));
+                            $userId = DB::insert("INSERT INTO users (name, email) VALUES ('$userName', '$userEmail')");
+                            return DB::selectOne("SELECT * FROM users WHERE id = $userId");
+                        }
                     ]
                 ];
             }

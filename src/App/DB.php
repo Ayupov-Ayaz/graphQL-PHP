@@ -49,4 +49,8 @@ class DB
         $statement = self::$pdo->query("UPDATE {$table_name} SET ".implode($valstr, ' ,')." where {$where}");
         $statement->execute();
     }
+    public static function insert($query) {
+        $statement = self::$pdo->query($query);
+        return self::$pdo->lastInsertId() ? self::$pdo->lastInsertId() : null;
+    }
 }
