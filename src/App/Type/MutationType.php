@@ -17,8 +17,8 @@ class MutationType extends ObjectType
                         'type' => Types::user(),
                         'description' => 'Изменение имени пользователя',
                         'args' => [
-                            'id' => Types::int(),
-                            'name' => Types::string()
+                            'id' => Types::nonNull(Types::int()),
+                            'name' => Types::nonNull(Types::string())
                         ],
                         'resolve' => function ($root, $args) {
                             $id = (int)$args['id'];
@@ -31,8 +31,8 @@ class MutationType extends ObjectType
                         'type' => Types::user(),
                         'description' => 'Изменить e-mail пользователя',
                         'args' => [
-                            'id' => Types::int(),
-                            'email' => Types::string()
+                            'id' => Types::nonNull(Types::int()),
+                            'email' => Types::nonNull(Types::email())
                         ],
                         'resolve' => function($root, $args) {
                             $id = (int)$args['id'];

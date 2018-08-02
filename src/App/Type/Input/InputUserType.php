@@ -12,11 +12,11 @@ class InputUserType extends InputObjectType
             'fields' => function() {
                 return [
                     'name' => [
-                        'type' => Types::string(),
+                        'type' => Types::nonNull(Types::string()),
                         'description' => 'Имя пользователя'
                     ],
                     'email' => [
-                        'type' => Types::string(),
+                        'type' => Types::nonNull(Types::email()),
                         'description' => 'E-mail пользователя'
                     ]
                 ];

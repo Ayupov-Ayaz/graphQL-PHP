@@ -5,6 +5,9 @@ use App\DB;
 use App\Types;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
+use GraphQL\Validator\DocumentValidator;
+use GraphQL\Validator\Rules\QueryComplexity;
+use GraphQL\Validator\Rules\QueryDepth;
 
 try {
 
@@ -42,6 +45,10 @@ try {
         'query' => Types::query(),
         'mutation' => Types::mutation()
     ]);
+
+    // Устанавливаем правила валидации запроса
+    DocumentValidator::addRule( new QueryComplexity($configs['query']['complexity']));
+    DocumentValidator::addRule( new QueryDepth($configs['query']['depth']));
 
     $result = GraphQL::executeQuery($schema, $query, $rootValue, null, $variableValues);
     $output = $result->toArray();

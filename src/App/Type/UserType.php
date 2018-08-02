@@ -19,7 +19,7 @@ class UserType extends ObjectType
                         'description' => 'Имя пользователя'
                     ],
                     'email' => [
-                        'type' => Types::string(),
+                        'type' => Types::email(),
                         'description' => 'E-mail пользователя'
                     ],
                     'friends' => [

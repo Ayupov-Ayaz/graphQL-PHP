@@ -4,6 +4,7 @@ namespace App;
 use App\Type\Input\InputUserType;
 use App\Type\MutationType;
 use App\Type\QueryType;
+use App\Type\Scalar\EmailType;
 use App\Type\UserType;
 use GraphQL\Type\Definition\Type;
 
@@ -20,6 +21,8 @@ class Types
     private static $user;
 
     private static $mutation;
+
+    private static $emailType;
 
     private static $inputUser;
     public static function query() {
@@ -45,5 +48,11 @@ class Types
     }
     public static function inputUser() {
         return self::$inputUser ?: (self::$inputUser = new InputUserType());
+    }
+    public static function nonNull($type) {
+        return Type::nonNull($type);
+    }
+    public static function email() {
+        return self::$emailType ?: (self::$emailType = new EmailType());
     }
 }

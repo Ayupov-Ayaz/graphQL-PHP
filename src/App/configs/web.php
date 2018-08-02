@@ -7,7 +7,16 @@ $configs = [
         'username' => getenv('MYSQL_USER'),
         'password' => getenv('MYSQL_PASSWORD'),
         'port' => getenv('MYSQL_PORT')
-    ]
+    ],
+    /**
+     * Валидаторы запроса
+     */
+    'query' => [
+        // сложность запроса, соответствует количеству полей в запросе
+        'complexity' => 12,
+        // глубина запроса, соответствует вложенности запроса
+        'depth' => 6
+    ],
 ];
 
 return $configs;
