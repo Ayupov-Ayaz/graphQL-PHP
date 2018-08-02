@@ -27,13 +27,14 @@ try {
         }
     );
     $configs = require_once(__DIR__.'/App/configs/web.php');
+    // инициализация с бд
     DB::init($configs['db']);
 
     // получаем json запрос
     $rawInput = file_get_contents('php://input');
     $input = json_decode($rawInput, true);
     $query = $input['query'];
-
+    // получение переменных запроса
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
     $rootValue = ['prefix' => 'You said: '];
 
