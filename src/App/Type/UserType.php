@@ -32,7 +32,7 @@ class UserType extends ObjectType
                         'description' => 'Друзья пользователя',
                         'resolve' => function ($args) {
                             $id = (int)$args->id;
-                            self::$userModel->getFriends($id);
+                            return self::$userModel->getFriends($id);
                         }
                     ],
                     'countFriends' => [
@@ -40,7 +40,7 @@ class UserType extends ObjectType
                         'description' => 'Количество друзей пользователя',
                         'resolve' => function ($args) {
                             $id = (int)$args->id;
-                            self::$userModel->getCountFriends($id);
+                            return self::$userModel->getCountFriends($id);
                         }
                     ]
                 ];

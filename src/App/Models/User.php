@@ -8,7 +8,7 @@ class User
      * @param int $id
      * @return mixed
      */
-    public function getCountFriends(int $id) {
+    public function getCountFriends($id) {
         return DB::affectingStatement("SELECT u.* FROM friendships f  JOIN users u ON u.id = f.friend_id 
                                              WHERE f.user_id = ".$id);
     }
@@ -18,7 +18,7 @@ class User
      * @param int $id
      * @return mixed
      */
-    public function getfriends(int $id) {
+    public function getfriends($id) {
         return DB::select("SELECT u.* FROM friendships f JOIN users u ON u.id = f.friend_id 
                                  WHERE f.user_id = ".$id);
     }
