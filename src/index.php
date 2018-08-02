@@ -39,7 +39,6 @@ try {
     $query = $input['query'];
     // получение переменных запроса
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
-    $rootValue = ['prefix' => 'You said: '];
 
     $schema = new Schema([
         'query' => Types::query(),
