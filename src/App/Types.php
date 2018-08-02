@@ -46,4 +46,7 @@ class Types
     public static function inputUser() {
         return self::$inputUser ?: (self::$inputUser = new InputUserType());
     }
+    public static function nonNull($type) {
+        return Type::nonNull($type);
+    }
 }
