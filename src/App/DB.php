@@ -46,8 +46,7 @@ class DB
             $val = gettype($val) == 'string' ? "'".$val."'" : $val;
             $valstr[] = $key." = ".$val;
         }
-        $statement = self::$pdo->query("UPDATE {$table_name} SET ".implode($valstr, ' ,')." where {$where}");
-        $statement->execute();
+        self::$pdo->query("UPDATE {$table_name} SET ".implode($valstr, ' ,')." where {$where}");
     }
     public static function insert($query) {
         $statement = self::$pdo->query($query);
