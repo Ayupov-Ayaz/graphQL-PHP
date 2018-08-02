@@ -16,7 +16,7 @@ class InputUserType extends InputObjectType
                         'description' => 'Имя пользователя'
                     ],
                     'email' => [
-                        'type' => Types::nonNull(Types::string()),
+                        'type' => Types::nonNull(Types::email()),
                         'description' => 'E-mail пользователя'
                     ]
                 ];

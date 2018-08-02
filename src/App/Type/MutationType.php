@@ -32,7 +32,7 @@ class MutationType extends ObjectType
                         'description' => 'Изменить e-mail пользователя',
                         'args' => [
                             'id' => Types::nonNull(Types::int()),
-                            'email' => Types::nonNull(Types::string())
+                            'email' => Types::nonNull(Types::email())
                         ],
                         'resolve' => function($root, $args) {
                             $id = (int)$args['id'];
