@@ -1,3 +1,3 @@
-FROM php:5.6-apache-jessie
+FROM php:7-apache
 MAINTAINER ayaz.ayupov@gmail.com
-RUN docker-php-ext-install pdo_mysql mysql mysqli
+RUN docker-php-ext-install pdo_mysql mysqli pdo
