@@ -39,8 +39,7 @@ class UserType extends ObjectType
                         'type' => Types::int(),
                         'description' => 'Количество друзей пользователя',
                         'resolve' => function ($args) {
-                            $id = (int)$args->id;
-                            return self::$userModel->getCountFriends($id);
+                            return self::$userModel->getCountFriends($args);
                         }
                     ]
                 ];
